@@ -13,5 +13,6 @@
         <module>servlet</module>
         <module>themeCrawler</module>
         <module>crawler</module>
+        <module>chatRoom</module>
     </modules>
 </project>

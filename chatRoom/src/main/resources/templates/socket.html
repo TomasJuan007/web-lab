@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Netty-Websocket</title>
+    <script type="text/javascript">
+        var socket;
+        if(!window.WebSocket){
+            window.WebSocket = window.MozWebSocket;
+        }
+        if(window.WebSocket){
+            socket = new WebSocket("ws://127.0.0.1:10000/ws");
+            socket.onmessage = function(event){
+                var ta = document.getElementById('responseText');
+                ta.value += event.data+"\r\n";
+            };
+            socket.onopen = function(event){
+                var ta = document.getElementById('responseText');
+                ta.value = "Netty-WebSocket服务器(已连接)  \r\n";
+            };
+            socket.onclose = function(event){
+                var ta = document.getElementById('responseText');
+                ta.value = "Netty-WebSocket服务器(已关闭) \r\n";
+            };
+        }else{
+            alert("您的浏览器不支持WebSocket协议！");
+        }
+        function send(message){
+            if(!window.WebSocket){return;}
+            if(socket.readyState == WebSocket.OPEN){
+                socket.send(message);
+            }else{
+                alert("WebSocket 连接没有建立成功！");
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+<form onSubmit="return false;">
+    <label>用户</label>
+    <input type="text" name="uid" value="" /> <br/>
+    <label>输入</label>
+    <input type="text" name="message" value="" /> <br/>
+    <br/>
+    <input type="button" value="发送ws消息" onClick="send(this.form.uid.value+':'+this.form.message.value)" />
+    <hr color="black" />
+    <h3>服务端返回的应答消息</h3>
+    <textarea id="responseText" style="width: 1024px;height: 300px;"></textarea>
+</form>
+</body>
+</html>
