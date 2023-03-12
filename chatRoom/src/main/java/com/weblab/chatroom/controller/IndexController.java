@@ -8,12 +8,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
 	/** 用于随机选的数字 */
-	public static final String BASE_NUMBER = "0123456789";
+	public static final String BASE_CHARACTER = "abcdefghijklmnopqrstuvwxyz0123456789";
 
 	@GetMapping("/index")
 	public ModelAndView index(){
 		ModelAndView mav = new ModelAndView("socket");
-		mav.addObject("uid", RandomUtils.randomString(BASE_NUMBER,6));
+		mav.addObject("uid", RandomUtils.randomString(BASE_CHARACTER,6));
 		return mav;
 	}
 }

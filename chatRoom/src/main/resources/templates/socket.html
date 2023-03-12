@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Netty-Websocket</title>
@@ -40,9 +40,9 @@
 <body>
 <form onSubmit="return false;">
     <label>用户</label>
-    <input type="text" name="uid" value="" /> <br/>
-    <label>输入</label>
-    <input type="text" name="message" value="" /> <br/>
+    <input type="text" name="uid" th:value="${uid}" disabled="disabled" />
+    <br/>
+    <textarea name="message" cols="100" rows="20"></textarea>
     <br/>
     <input type="button" value="发送ws消息" onClick="send(this.form.uid.value+':'+this.form.message.value)" />
     <hr color="black" />
