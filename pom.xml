@@ -14,5 +14,6 @@
         <module>themeCrawler</module>
         <module>crawler</module>
         <module>chatRoom</module>
+        <module>protocol</module>
     </modules>
 </project>
